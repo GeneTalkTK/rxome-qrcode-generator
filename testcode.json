@@ -1,0 +1,47 @@
+{
+  "variants": [
+    {
+      "testType": "Single gene sequencing",
+      "variants": [
+        {
+          "gene": "PIGV",
+          "hgnc": "26031",
+          "entrez": "55650",
+          "zygosity": "Homozygous",
+          "hgvs": "NM_017837.4(PIGV):c.1022C>A (p.Ala341Glu)",
+          "classification": "Pathogenic"
+        }
+      ]
+    },
+    {
+      "testType": "Karyotype",
+      "variants": [
+        {
+          "iscn": "Demo ISCN Variant",
+          "classification": "Benign"
+        }
+      ]
+    }
+  ],
+  "phenotypicFeatures": {
+    "included": [
+      "HP:0003155",
+      "HP:0001249",
+      "HP:0001250"
+    ],
+    "excluded": [
+      "HP:0031360"
+    ]
+  },
+  "date_birth": "2000-01-01",
+  "sex": "f",
+  "omim": "614207",
+  "solved": true,
+  "comment": "Some useful remarks",
+  "metaData": {
+    "date": "2022-08-31",
+    "lab": "ACME Genetics",
+    "email": "genetics@acme.org",
+    "pseudonym_lab": "PINKYANDTHEBRAIN"
+  }
+}
