@@ -1,11 +1,16 @@
 {
-  "name": "rxome-qrcode-generator",
-  "version": "0.1.0",
+  "name": "rxome-generator",
+  "version": "0.1.1",
   "description": "Generates QR codes containing medical information for use with RxOME database.",
-  "main": "dist/index.js",
+  "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "test": "jest"
+    "test": "jest --verbose",
+    "testcoder": "jest --verbose -t 'Coder'",
+    "testpreproc": "jest --verbose -t 'Phenopackets preprocessor'",
+    "testror": "jest -t 'Rails'",
+    "testcmd": "jest -t 'CmdLine'",
+    "testx": "jest --verbose -t 'pseudonyme'"
   },
   "repository": {
     "type": "git",
@@ -20,17 +25,27 @@
   ],
   "author": "Tom Kamphans",
   "license": "MIT",
+  "license" : "SEE LICENSE IN README.md",
   "bugs": {
     "url": "https://github.com/GeneTalkTK/rxome-qrcode-generator/issues"
   },
   "homepage": "https://github.com/GeneTalkTK/rxome-qrcode-generator#readme",
   "dependencies": {
+    "@noble/ed25519": "^1.7.1",
     "axios": "^0.27.1",
-    "commander": "^9.2.0",
+    "commander": "^9.4.0",
+    "json-key-converter": "^1.0.0",
+    "noble-ed25519": "^1.2.6",
     "openpgp": "^5.2.1",
+    "protobufjs": "~7.1.0",
+    "protobufjs-cli": "^1.0.1",
     "qrcode": "^1.5.0"
   },
   "devDependencies": {
-    "jest": "^28.0.1"
+    "jest": "^28.0.1",
+    "json-loader": "^0.5.7"
+  },
+  "bin": {
+    "rxcode": "./rxcode"
   }
 }

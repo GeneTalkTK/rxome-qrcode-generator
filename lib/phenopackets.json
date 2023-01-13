@@ -1,0 +1,1948 @@
+{
+  "nested": {
+    "org": {
+      "nested": {
+        "phenopackets": {
+          "nested": {
+            "schema": {
+              "nested": {
+                "v2": {
+                  "options": {
+                    "java_multiple_files": true,
+                    "java_package": "org.phenopackets.schema.v2"
+                  },
+                  "nested": {
+                    "Phenopacket": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "subject": {
+                          "type": "core.Individual",
+                          "id": 2
+                        },
+                        "phenotypicFeatures": {
+                          "rule": "repeated",
+                          "type": "core.PhenotypicFeature",
+                          "id": 3
+                        },
+                        "measurements": {
+                          "rule": "repeated",
+                          "type": "core.Measurement",
+                          "id": 4
+                        },
+                        "biosamples": {
+                          "rule": "repeated",
+                          "type": "core.Biosample",
+                          "id": 5
+                        },
+                        "interpretations": {
+                          "rule": "repeated",
+                          "type": "core.Interpretation",
+                          "id": 6
+                        },
+                        "diseases": {
+                          "rule": "repeated",
+                          "type": "core.Disease",
+                          "id": 7
+                        },
+                        "medicalActions": {
+                          "rule": "repeated",
+                          "type": "core.MedicalAction",
+                          "id": 9
+                        },
+                        "files": {
+                          "rule": "repeated",
+                          "type": "core.File",
+                          "id": 10
+                        },
+                        "metaData": {
+                          "type": "core.MetaData",
+                          "id": 11
+                        },
+                        "compressedFeatures": {
+                          "type": "compressedFeatures",
+                          "id": 12
+                        },
+                        "comment": {
+                          "type": "string",
+                          "id": 13
+                        }
+                      }
+                    },
+                    "compressedFeatures": {
+                      "fields": {
+                        "includes": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 1
+                        },
+                        "excludes": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "Family": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "proband": {
+                          "type": "Phenopacket",
+                          "id": 2
+                        },
+                        "relatives": {
+                          "rule": "repeated",
+                          "type": "Phenopacket",
+                          "id": 3
+                        },
+                        "consanguinousParents": {
+                          "type": "bool",
+                          "id": 7
+                        },
+                        "pedigree": {
+                          "type": "core.Pedigree",
+                          "id": 4
+                        },
+                        "files": {
+                          "rule": "repeated",
+                          "type": "core.File",
+                          "id": 5
+                        },
+                        "metaData": {
+                          "type": "core.MetaData",
+                          "id": 6
+                        }
+                      }
+                    },
+                    "Cohort": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "description": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "members": {
+                          "rule": "repeated",
+                          "type": "Phenopacket",
+                          "id": 3
+                        },
+                        "files": {
+                          "rule": "repeated",
+                          "type": "core.File",
+                          "id": 4
+                        },
+                        "metaData": {
+                          "type": "core.MetaData",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "core": {
+                      "options": {
+                        "java_multiple_files": true,
+                        "java_package": "org.phenopackets.schema.v2.core"
+                      },
+                      "nested": {
+                        "OntologyClass": {
+                          "fields": {
+                            "id": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "label": {
+                              "type": "string",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "ExternalReference": {
+                          "fields": {
+                            "id": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "reference": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "description": {
+                              "type": "string",
+                              "id": 3
+                            }
+                          }
+                        },
+                        "Evidence": {
+                          "fields": {
+                            "evidenceCode": {
+                              "type": "OntologyClass",
+                              "id": 1
+                            },
+                            "reference": {
+                              "type": "ExternalReference",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "Procedure": {
+                          "fields": {
+                            "code": {
+                              "type": "OntologyClass",
+                              "id": 1
+                            },
+                            "bodySite": {
+                              "type": "OntologyClass",
+                              "id": 2
+                            },
+                            "performed": {
+                              "type": "TimeElement",
+                              "id": 3
+                            }
+                          }
+                        },
+                        "GestationalAge": {
+                          "fields": {
+                            "weeks": {
+                              "type": "int32",
+                              "id": 1
+                            },
+                            "days": {
+                              "type": "int32",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "Age": {
+                          "fields": {
+                            "iso8601duration": {
+                              "type": "string",
+                              "id": 1
+                            }
+                          }
+                        },
+                        "AgeRange": {
+                          "fields": {
+                            "start": {
+                              "type": "Age",
+                              "id": 1
+                            },
+                            "end": {
+                              "type": "Age",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "TimeInterval": {
+                          "fields": {
+                            "start": {
+                              "type": "google.protobuf.Timestamp",
+                              "id": 1
+                            },
+                            "end": {
+                              "type": "google.protobuf.Timestamp",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "TimeElement": {
+                          "oneofs": {
+                            "element": {
+                              "oneof": [
+                                "gestationalAge",
+                                "age",
+                                "ageRange",
+                                "ontologyClass",
+                                "timestamp",
+                                "interval"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "gestationalAge": {
+                              "type": "GestationalAge",
+                              "id": 6
+                            },
+                            "age": {
+                              "type": "Age",
+                              "id": 1
+                            },
+                            "ageRange": {
+                              "type": "AgeRange",
+                              "id": 2
+                            },
+                            "ontologyClass": {
+                              "type": "OntologyClass",
+                              "id": 3
+                            },
+                            "timestamp": {
+                              "type": "google.protobuf.Timestamp",
+                              "id": 4
+                            },
+                            "interval": {
+                              "type": "TimeInterval",
+                              "id": 5
+                            }
+                          }
+                        },
+                        "File": {
+                          "fields": {
+                            "uri": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "individualToFileIdentifiers": {
+                              "keyType": "string",
+                              "type": "string",
+                              "id": 2
+                            },
+                            "fileAttributes": {
+                              "keyType": "string",
+                              "type": "string",
+                              "id": 3
+                            }
+                          }
+                        },
+                        "Biosample": {
+                          "fields": {
+                            "id": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "individualId": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "derivedFromId": {
+                              "type": "string",
+                              "id": 3
+                            },
+                            "description": {
+                              "type": "string",
+                              "id": 4
+                            },
+                            "sampledTissue": {
+                              "type": "OntologyClass",
+                              "id": 5
+                            },
+                            "sampleType": {
+                              "type": "OntologyClass",
+                              "id": 6
+                            },
+                            "phenotypicFeatures": {
+                              "rule": "repeated",
+                              "type": "PhenotypicFeature",
+                              "id": 7
+                            },
+                            "measurements": {
+                              "rule": "repeated",
+                              "type": "Measurement",
+                              "id": 8
+                            },
+                            "taxonomy": {
+                              "type": "OntologyClass",
+                              "id": 9
+                            },
+                            "timeOfCollection": {
+                              "type": "TimeElement",
+                              "id": 10
+                            },
+                            "histologicalDiagnosis": {
+                              "type": "OntologyClass",
+                              "id": 11
+                            },
+                            "tumorProgression": {
+                              "type": "OntologyClass",
+                              "id": 12
+                            },
+                            "tumorGrade": {
+                              "type": "OntologyClass",
+                              "id": 13
+                            },
+                            "pathologicalStage": {
+                              "type": "OntologyClass",
+                              "id": 14
+                            },
+                            "pathologicalTnmFinding": {
+                              "rule": "repeated",
+                              "type": "OntologyClass",
+                              "id": 15
+                            },
+                            "diagnosticMarkers": {
+                              "rule": "repeated",
+                              "type": "OntologyClass",
+                              "id": 16
+                            },
+                            "procedure": {
+                              "type": "Procedure",
+                              "id": 17
+                            },
+                            "files": {
+                              "rule": "repeated",
+                              "type": "File",
+                              "id": 18
+                            },
+                            "materialSample": {
+                              "type": "OntologyClass",
+                              "id": 19
+                            },
+                            "sampleProcessing": {
+                              "type": "OntologyClass",
+                              "id": 20
+                            },
+                            "sampleStorage": {
+                              "type": "OntologyClass",
+                              "id": 21
+                            }
+                          }
+                        },
+                        "Measurement": {
+                          "oneofs": {
+                            "measurementValue": {
+                              "oneof": [
+                                "value",
+                                "complexValue"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "description": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "assay": {
+                              "type": "OntologyClass",
+                              "id": 2
+                            },
+                            "value": {
+                              "type": "Value",
+                              "id": 3
+                            },
+                            "complexValue": {
+                              "type": "ComplexValue",
+                              "id": 4
+                            },
+                            "timeObserved": {
+                              "type": "TimeElement",
+                              "id": 5
+                            },
+                            "procedure": {
+                              "type": "Procedure",
+                              "id": 6
+                            }
+                          }
+                        },
+                        "Value": {
+                          "oneofs": {
+                            "value": {
+                              "oneof": [
+                                "quantity",
+                                "ontologyClass"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "quantity": {
+                              "type": "Quantity",
+                              "id": 1
+                            },
+                            "ontologyClass": {
+                              "type": "OntologyClass",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "ComplexValue": {
+                          "fields": {
+                            "typedQuantities": {
+                              "rule": "repeated",
+                              "type": "TypedQuantity",
+                              "id": 1
+                            }
+                          }
+                        },
+                        "Quantity": {
+                          "fields": {
+                            "unit": {
+                              "type": "OntologyClass",
+                              "id": 1
+                            },
+                            "value": {
+                              "type": "double",
+                              "id": 2
+                            },
+                            "referenceRange": {
+                              "type": "ReferenceRange",
+                              "id": 3
+                            }
+                          }
+                        },
+                        "TypedQuantity": {
+                          "fields": {
+                            "type": {
+                              "type": "OntologyClass",
+                              "id": 1
+                            },
+                            "quantity": {
+                              "type": "Quantity",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "ReferenceRange": {
+                          "fields": {
+                            "unit": {
+                              "type": "OntologyClass",
+                              "id": 1
+                            },
+                            "low": {
+                              "type": "double",
+                              "id": 2
+                            },
+                            "high": {
+                              "type": "double",
+                              "id": 3
+                            }
+                          }
+                        },
+                        "PhenotypicFeature": {
+                          "fields": {
+                            "description": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "type": {
+                              "type": "OntologyClass",
+                              "id": 2
+                            },
+                            "excluded": {
+                              "type": "bool",
+                              "id": 3
+                            },
+                            "severity": {
+                              "type": "OntologyClass",
+                              "id": 4
+                            },
+                            "modifiers": {
+                              "rule": "repeated",
+                              "type": "OntologyClass",
+                              "id": 5
+                            },
+                            "onset": {
+                              "type": "TimeElement",
+                              "id": 6
+                            },
+                            "resolution": {
+                              "type": "TimeElement",
+                              "id": 7
+                            },
+                            "evidence": {
+                              "rule": "repeated",
+                              "type": "Evidence",
+                              "id": 8
+                            }
+                          }
+                        },
+                        "Disease": {
+                          "fields": {
+                            "term": {
+                              "type": "OntologyClass",
+                              "id": 1
+                            },
+                            "excluded": {
+                              "type": "bool",
+                              "id": 2
+                            },
+                            "onset": {
+                              "type": "TimeElement",
+                              "id": 3
+                            },
+                            "resolution": {
+                              "type": "TimeElement",
+                              "id": 4
+                            },
+                            "diseaseStage": {
+                              "rule": "repeated",
+                              "type": "OntologyClass",
+                              "id": 5
+                            },
+                            "clinicalTnmFinding": {
+                              "rule": "repeated",
+                              "type": "OntologyClass",
+                              "id": 6
+                            },
+                            "primarySite": {
+                              "type": "OntologyClass",
+                              "id": 7
+                            },
+                            "laterality": {
+                              "type": "OntologyClass",
+                              "id": 8
+                            }
+                          }
+                        },
+                        "Interpretation": {
+                          "fields": {
+                            "id": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "progressStatus": {
+                              "type": "ProgressStatus",
+                              "id": 2
+                            },
+                            "diagnosis": {
+                              "type": "Diagnosis",
+                              "id": 3
+                            },
+                            "summary": {
+                              "type": "string",
+                              "id": 4
+                            }
+                          },
+                          "nested": {
+                            "ProgressStatus": {
+                              "values": {
+                                "UNKNOWN_PROGRESS": 0,
+                                "IN_PROGRESS": 1,
+                                "COMPLETED": 2,
+                                "SOLVED": 3,
+                                "UNSOLVED": 4
+                              }
+                            }
+                          }
+                        },
+                        "Diagnosis": {
+                          "fields": {
+                            "disease": {
+                              "type": "OntologyClass",
+                              "id": 1
+                            },
+                            "genomicInterpretations": {
+                              "rule": "repeated",
+                              "type": "GenomicInterpretation",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "GenomicInterpretation": {
+                          "oneofs": {
+                            "call": {
+                              "oneof": [
+                                "gene",
+                                "variantInterpretation"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "subjectOrBiosampleId": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "interpretationStatus": {
+                              "type": "InterpretationStatus",
+                              "id": 2
+                            },
+                            "gene": {
+                              "type": "org.ga4gh.vrsatile.v1.GeneDescriptor",
+                              "id": 3
+                            },
+                            "variantInterpretation": {
+                              "type": "VariantInterpretation",
+                              "id": 4
+                            }
+                          },
+                          "nested": {
+                            "InterpretationStatus": {
+                              "values": {
+                                "UNKNOWN_STATUS": 0,
+                                "REJECTED": 1,
+                                "CANDIDATE": 2,
+                                "CONTRIBUTORY": 3,
+                                "CAUSATIVE": 4
+                              }
+                            }
+                          }
+                        },
+                        "AcmgPathogenicityClassification": {
+                          "values": {
+                            "NOT_PROVIDED": 0,
+                            "BENIGN": 1,
+                            "LIKELY_BENIGN": 2,
+                            "UNCERTAIN_SIGNIFICANCE": 3,
+                            "LIKELY_PATHOGENIC": 4,
+                            "PATHOGENIC": 5
+                          }
+                        },
+                        "TherapeuticActionability": {
+                          "values": {
+                            "UNKNOWN_ACTIONABILITY": 0,
+                            "NOT_ACTIONABLE": 1,
+                            "ACTIONABLE": 2
+                          }
+                        },
+                        "VariantInterpretation": {
+                          "fields": {
+                            "acmgPathogenicityClassification": {
+                              "type": "AcmgPathogenicityClassification",
+                              "id": 1
+                            },
+                            "therapeuticActionability": {
+                              "type": "TherapeuticActionability",
+                              "id": 2
+                            },
+                            "variationDescriptor": {
+                              "type": "org.ga4gh.vrsatile.v1.VariationDescriptor",
+                              "id": 3
+                            }
+                          }
+                        },
+                        "Individual": {
+                          "fields": {
+                            "id": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "alternateIds": {
+                              "rule": "repeated",
+                              "type": "string",
+                              "id": 2
+                            },
+                            "dateOfBirth": {
+                              "type": "string",
+                              "id": 3
+                            },
+                            "timeAtLastEncounter": {
+                              "type": "TimeElement",
+                              "id": 4
+                            },
+                            "vitalStatus": {
+                              "type": "VitalStatus",
+                              "id": 5
+                            },
+                            "sex": {
+                              "type": "Sex",
+                              "id": 6
+                            },
+                            "karyotypicSex": {
+                              "type": "KaryotypicSex",
+                              "id": 7
+                            },
+                            "gender": {
+                              "type": "OntologyClass",
+                              "id": 8
+                            },
+                            "taxonomy": {
+                              "type": "OntologyClass",
+                              "id": 9
+                            }
+                          }
+                        },
+                        "VitalStatus": {
+                          "fields": {
+                            "status": {
+                              "type": "Status",
+                              "id": 1
+                            },
+                            "timeOfDeath": {
+                              "type": "TimeElement",
+                              "id": 2
+                            },
+                            "causeOfDeath": {
+                              "type": "OntologyClass",
+                              "id": 3
+                            },
+                            "survivalTimeInDays": {
+                              "type": "uint32",
+                              "id": 4
+                            }
+                          },
+                          "nested": {
+                            "Status": {
+                              "values": {
+                                "UNKNOWN_STATUS": 0,
+                                "ALIVE": 1,
+                                "DECEASED": 2
+                              }
+                            }
+                          }
+                        },
+                        "Sex": {
+                          "values": {
+                            "UNKNOWN_SEX": 0,
+                            "FEMALE": 1,
+                            "MALE": 2,
+                            "OTHER_SEX": 3
+                          }
+                        },
+                        "KaryotypicSex": {
+                          "values": {
+                            "UNKNOWN_KARYOTYPE": 0,
+                            "XX": 1,
+                            "XY": 2,
+                            "XO": 3,
+                            "XXY": 4,
+                            "XXX": 5,
+                            "XXYY": 6,
+                            "XXXY": 7,
+                            "XXXX": 8,
+                            "XYY": 9,
+                            "OTHER_KARYOTYPE": 10
+                          }
+                        },
+                        "MedicalAction": {
+                          "oneofs": {
+                            "action": {
+                              "oneof": [
+                                "procedure",
+                                "treatment",
+                                "radiationTherapy",
+                                "therapeuticRegimen"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "procedure": {
+                              "type": "Procedure",
+                              "id": 1
+                            },
+                            "treatment": {
+                              "type": "Treatment",
+                              "id": 2
+                            },
+                            "radiationTherapy": {
+                              "type": "RadiationTherapy",
+                              "id": 3
+                            },
+                            "therapeuticRegimen": {
+                              "type": "TherapeuticRegimen",
+                              "id": 4
+                            },
+                            "treatmentTarget": {
+                              "type": "OntologyClass",
+                              "id": 5
+                            },
+                            "treatmentIntent": {
+                              "type": "OntologyClass",
+                              "id": 6
+                            },
+                            "responseToTreatment": {
+                              "type": "OntologyClass",
+                              "id": 7
+                            },
+                            "adverseEvents": {
+                              "rule": "repeated",
+                              "type": "OntologyClass",
+                              "id": 8
+                            },
+                            "treatmentTerminationReason": {
+                              "type": "OntologyClass",
+                              "id": 9
+                            }
+                          }
+                        },
+                        "Treatment": {
+                          "fields": {
+                            "agent": {
+                              "type": "OntologyClass",
+                              "id": 1
+                            },
+                            "routeOfAdministration": {
+                              "type": "OntologyClass",
+                              "id": 2
+                            },
+                            "doseIntervals": {
+                              "rule": "repeated",
+                              "type": "DoseInterval",
+                              "id": 3
+                            },
+                            "drugType": {
+                              "type": "DrugType",
+                              "id": 4
+                            },
+                            "cumulativeDose": {
+                              "type": "Quantity",
+                              "id": 5
+                            }
+                          }
+                        },
+                        "DoseInterval": {
+                          "fields": {
+                            "quantity": {
+                              "type": "Quantity",
+                              "id": 1
+                            },
+                            "scheduleFrequency": {
+                              "type": "OntologyClass",
+                              "id": 2
+                            },
+                            "interval": {
+                              "type": "TimeInterval",
+                              "id": 3
+                            }
+                          }
+                        },
+                        "DrugType": {
+                          "values": {
+                            "UNKNOWN_DRUG_TYPE": 0,
+                            "PRESCRIPTION": 1,
+                            "EHR_MEDICATION_LIST": 2,
+                            "ADMINISTRATION_RELATED_TO_PROCEDURE": 3
+                          }
+                        },
+                        "RadiationTherapy": {
+                          "fields": {
+                            "modality": {
+                              "type": "OntologyClass",
+                              "id": 1
+                            },
+                            "bodySite": {
+                              "type": "OntologyClass",
+                              "id": 2
+                            },
+                            "dosage": {
+                              "type": "int32",
+                              "id": 3
+                            },
+                            "fractions": {
+                              "type": "int32",
+                              "id": 4
+                            }
+                          }
+                        },
+                        "TherapeuticRegimen": {
+                          "oneofs": {
+                            "identifier": {
+                              "oneof": [
+                                "externalReference",
+                                "ontologyClass"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "externalReference": {
+                              "type": "ExternalReference",
+                              "id": 1
+                            },
+                            "ontologyClass": {
+                              "type": "OntologyClass",
+                              "id": 2
+                            },
+                            "startTime": {
+                              "type": "TimeElement",
+                              "id": 3
+                            },
+                            "endTime": {
+                              "type": "TimeElement",
+                              "id": 4
+                            },
+                            "regimenStatus": {
+                              "type": "RegimenStatus",
+                              "id": 5
+                            }
+                          },
+                          "nested": {
+                            "RegimenStatus": {
+                              "values": {
+                                "UNKNOWN_STATUS": 0,
+                                "STARTED": 1,
+                                "COMPLETED": 2,
+                                "DISCONTINUED": 3
+                              }
+                            }
+                          }
+                        },
+                        "MetaData": {
+                          "fields": {
+                            "created": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "createdBy": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "submittedBy": {
+                              "type": "string",
+                              "id": 3
+                            },
+                            "resources": {
+                              "rule": "repeated",
+                              "type": "Resource",
+                              "id": 4
+                            },
+                            "updates": {
+                              "rule": "repeated",
+                              "type": "Update",
+                              "id": 5
+                            },
+                            "phenopacketSchemaVersion": {
+                              "type": "string",
+                              "id": 6
+                            },
+                            "externalReferences": {
+                              "rule": "repeated",
+                              "type": "ExternalReference",
+                              "id": 7
+                            },
+                            "pseudonym": {
+                              "type": "string",
+                              "id": 8
+                            }
+                          }
+                        },
+                        "Resource": {
+                          "fields": {
+                            "id": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "name": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "url": {
+                              "type": "string",
+                              "id": 3
+                            },
+                            "version": {
+                              "type": "string",
+                              "id": 4
+                            },
+                            "namespacePrefix": {
+                              "type": "string",
+                              "id": 5
+                            },
+                            "iriPrefix": {
+                              "type": "string",
+                              "id": 6
+                            }
+                          }
+                        },
+                        "Update": {
+                          "fields": {
+                            "timestamp": {
+                              "type": "google.protobuf.Timestamp",
+                              "id": 1
+                            },
+                            "updatedBy": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "comment": {
+                              "type": "string",
+                              "id": 3
+                            }
+                          }
+                        },
+                        "Pedigree": {
+                          "fields": {
+                            "persons": {
+                              "rule": "repeated",
+                              "type": "Person",
+                              "id": 1
+                            }
+                          },
+                          "nested": {
+                            "Person": {
+                              "fields": {
+                                "familyId": {
+                                  "type": "string",
+                                  "id": 1
+                                },
+                                "individualId": {
+                                  "type": "string",
+                                  "id": 2
+                                },
+                                "paternalId": {
+                                  "type": "string",
+                                  "id": 3
+                                },
+                                "maternalId": {
+                                  "type": "string",
+                                  "id": 4
+                                },
+                                "sex": {
+                                  "type": "Sex",
+                                  "id": 5
+                                },
+                                "affectedStatus": {
+                                  "type": "AffectedStatus",
+                                  "id": 6
+                                }
+                              },
+                              "nested": {
+                                "AffectedStatus": {
+                                  "values": {
+                                    "MISSING": 0,
+                                    "UNAFFECTED": 1,
+                                    "AFFECTED": 2
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ga4gh": {
+          "nested": {
+            "vrsatile": {
+              "nested": {
+                "v1": {
+                  "options": {
+                    "java_multiple_files": true,
+                    "java_package": "org.ga4gh.vrsatile.v1"
+                  },
+                  "nested": {
+                    "Extension": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "value": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "Expression": {
+                      "fields": {
+                        "syntax": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "value": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "version": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "VcfRecord": {
+                      "fields": {
+                        "genomeAssembly": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "chrom": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "pos": {
+                          "type": "uint64",
+                          "id": 3
+                        },
+                        "id": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "ref": {
+                          "type": "string",
+                          "id": 5
+                        },
+                        "alt": {
+                          "type": "string",
+                          "id": 6
+                        },
+                        "qual": {
+                          "type": "string",
+                          "id": 7
+                        },
+                        "filter": {
+                          "type": "string",
+                          "id": 8
+                        },
+                        "info": {
+                          "type": "string",
+                          "id": 9
+                        }
+                      }
+                    },
+                    "VariationDescriptor": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "variation": {
+                          "type": "org.ga4gh.vrs.v1.Variation",
+                          "id": 2
+                        },
+                        "label": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "description": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "geneContext": {
+                          "type": "GeneDescriptor",
+                          "id": 5
+                        },
+                        "expressions": {
+                          "rule": "repeated",
+                          "type": "Expression",
+                          "id": 6
+                        },
+                        "vcfRecord": {
+                          "type": "VcfRecord",
+                          "id": 7
+                        },
+                        "xrefs": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 8
+                        },
+                        "alternateLabels": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 9
+                        },
+                        "extensions": {
+                          "rule": "repeated",
+                          "type": "Extension",
+                          "id": 10
+                        },
+                        "moleculeContext": {
+                          "type": "MoleculeContext",
+                          "id": 11
+                        },
+                        "structuralType": {
+                          "type": "org.phenopackets.schema.v2.core.OntologyClass",
+                          "id": 12
+                        },
+                        "vrsRefAlleleSeq": {
+                          "type": "string",
+                          "id": 13
+                        },
+                        "allelicState": {
+                          "type": "org.phenopackets.schema.v2.core.OntologyClass",
+                          "id": 14
+                        }
+                      }
+                    },
+                    "MoleculeContext": {
+                      "values": {
+                        "unspecified_molecule_context": 0,
+                        "genomic": 1,
+                        "transcript": 2,
+                        "protein": 3
+                      }
+                    },
+                    "GeneDescriptor": {
+                      "fields": {
+                        "valueId": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "symbol": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "description": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "alternateIds": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 4
+                        },
+                        "alternateSymbols": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 5
+                        },
+                        "xrefs": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 6
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "vrs": {
+              "nested": {
+                "v1": {
+                  "options": {
+                    "java_multiple_files": true,
+                    "java_package": "org.ga4gh.vrs.v1"
+                  },
+                  "nested": {
+                    "Variation": {
+                      "oneofs": {
+                        "variation": {
+                          "oneof": [
+                            "allele",
+                            "haplotype",
+                            "copyNumber",
+                            "text",
+                            "variationSet"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "allele": {
+                          "type": "Allele",
+                          "id": 1
+                        },
+                        "haplotype": {
+                          "type": "Haplotype",
+                          "id": 2
+                        },
+                        "copyNumber": {
+                          "type": "CopyNumber",
+                          "id": 3
+                        },
+                        "text": {
+                          "type": "Text",
+                          "id": 4
+                        },
+                        "variationSet": {
+                          "type": "VariationSet",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "MolecularVariation": {
+                      "oneofs": {
+                        "molecularVariation": {
+                          "oneof": [
+                            "allele",
+                            "haplotype"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "allele": {
+                          "type": "Allele",
+                          "id": 1
+                        },
+                        "haplotype": {
+                          "type": "Haplotype",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "UtilityVariation": {
+                      "oneofs": {
+                        "utilityVariation": {
+                          "oneof": [
+                            "text",
+                            "variationSet"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "text": {
+                          "type": "Text",
+                          "id": 1
+                        },
+                        "variationSet": {
+                          "type": "VariationSet",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "SystemicVariation": {
+                      "oneofs": {
+                        "systemicVariation": {
+                          "oneof": [
+                            "copyNumber"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "copyNumber": {
+                          "type": "CopyNumber",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "Allele": {
+                      "oneofs": {
+                        "location": {
+                          "oneof": [
+                            "curie",
+                            "chromosomeLocation",
+                            "sequenceLocation"
+                          ]
+                        },
+                        "state": {
+                          "oneof": [
+                            "sequenceState",
+                            "literalSequenceExpression",
+                            "derivedSequenceExpression",
+                            "repeatedSequenceExpression"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "_id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "curie": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "chromosomeLocation": {
+                          "type": "ChromosomeLocation",
+                          "id": 3
+                        },
+                        "sequenceLocation": {
+                          "type": "SequenceLocation",
+                          "id": 4
+                        },
+                        "sequenceState": {
+                          "type": "SequenceState",
+                          "id": 100,
+                          "options": {
+                            "deprecated": true
+                          }
+                        },
+                        "literalSequenceExpression": {
+                          "type": "LiteralSequenceExpression",
+                          "id": 5
+                        },
+                        "derivedSequenceExpression": {
+                          "type": "DerivedSequenceExpression",
+                          "id": 6
+                        },
+                        "repeatedSequenceExpression": {
+                          "type": "RepeatedSequenceExpression",
+                          "id": 7
+                        }
+                      }
+                    },
+                    "Haplotype": {
+                      "fields": {
+                        "_id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "members": {
+                          "rule": "repeated",
+                          "type": "Member",
+                          "id": 2
+                        }
+                      },
+                      "nested": {
+                        "Member": {
+                          "oneofs": {
+                            "value": {
+                              "oneof": [
+                                "allele",
+                                "curie"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "allele": {
+                              "type": "Allele",
+                              "id": 1
+                            },
+                            "curie": {
+                              "type": "string",
+                              "id": 2
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Text": {
+                      "fields": {
+                        "_id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "definition": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "VariationSet": {
+                      "fields": {
+                        "_id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "members": {
+                          "rule": "repeated",
+                          "type": "Member",
+                          "id": 2
+                        }
+                      },
+                      "nested": {
+                        "Member": {
+                          "oneofs": {
+                            "value": {
+                              "oneof": [
+                                "curie",
+                                "allele",
+                                "haplotype",
+                                "copyNumber",
+                                "text",
+                                "variationSet"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "curie": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "allele": {
+                              "type": "Allele",
+                              "id": 2
+                            },
+                            "haplotype": {
+                              "type": "Haplotype",
+                              "id": 3
+                            },
+                            "copyNumber": {
+                              "type": "CopyNumber",
+                              "id": 4
+                            },
+                            "text": {
+                              "type": "Text",
+                              "id": 5
+                            },
+                            "variationSet": {
+                              "type": "VariationSet",
+                              "id": 6
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Abundance": {
+                      "oneofs": {
+                        "abundance": {
+                          "oneof": [
+                            "copyNumber"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "copyNumber": {
+                          "type": "CopyNumber",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "CopyNumber": {
+                      "oneofs": {
+                        "subject": {
+                          "oneof": [
+                            "allele",
+                            "haplotype",
+                            "gene",
+                            "literalSequenceExpression",
+                            "derivedSequenceExpression",
+                            "repeatedSequenceExpression",
+                            "curie"
+                          ]
+                        },
+                        "copies": {
+                          "oneof": [
+                            "number",
+                            "indefiniteRange",
+                            "definiteRange"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "_id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "allele": {
+                          "type": "Allele",
+                          "id": 2
+                        },
+                        "haplotype": {
+                          "type": "Haplotype",
+                          "id": 3
+                        },
+                        "gene": {
+                          "type": "Gene",
+                          "id": 4
+                        },
+                        "literalSequenceExpression": {
+                          "type": "LiteralSequenceExpression",
+                          "id": 5
+                        },
+                        "derivedSequenceExpression": {
+                          "type": "DerivedSequenceExpression",
+                          "id": 6
+                        },
+                        "repeatedSequenceExpression": {
+                          "type": "RepeatedSequenceExpression",
+                          "id": 7
+                        },
+                        "curie": {
+                          "type": "string",
+                          "id": 8
+                        },
+                        "number": {
+                          "type": "Number",
+                          "id": 9
+                        },
+                        "indefiniteRange": {
+                          "type": "IndefiniteRange",
+                          "id": 10
+                        },
+                        "definiteRange": {
+                          "type": "DefiniteRange",
+                          "id": 11
+                        }
+                      }
+                    },
+                    "Location": {
+                      "oneofs": {
+                        "location": {
+                          "oneof": [
+                            "chromosomeLocation",
+                            "sequenceLocation"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "chromosomeLocation": {
+                          "type": "ChromosomeLocation",
+                          "id": 1
+                        },
+                        "sequenceLocation": {
+                          "type": "SequenceLocation",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "ChromosomeLocation": {
+                      "fields": {
+                        "_id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "speciesId": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "chr": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "interval": {
+                          "type": "CytobandInterval",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "SequenceLocation": {
+                      "oneofs": {
+                        "interval": {
+                          "oneof": [
+                            "sequenceInterval",
+                            "simpleInterval"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "_id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "sequenceId": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "sequenceInterval": {
+                          "type": "SequenceInterval",
+                          "id": 3
+                        },
+                        "simpleInterval": {
+                          "type": "SimpleInterval",
+                          "id": 100,
+                          "options": {
+                            "deprecated": true
+                          }
+                        }
+                      }
+                    },
+                    "SequenceInterval": {
+                      "oneofs": {
+                        "start": {
+                          "oneof": [
+                            "startNumber",
+                            "startIndefiniteRange",
+                            "startDefiniteRange"
+                          ]
+                        },
+                        "end": {
+                          "oneof": [
+                            "endNumber",
+                            "endIndefiniteRange",
+                            "endDefiniteRange"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "startNumber": {
+                          "type": "Number",
+                          "id": 1
+                        },
+                        "startIndefiniteRange": {
+                          "type": "IndefiniteRange",
+                          "id": 2
+                        },
+                        "startDefiniteRange": {
+                          "type": "DefiniteRange",
+                          "id": 3
+                        },
+                        "endNumber": {
+                          "type": "Number",
+                          "id": 4
+                        },
+                        "endIndefiniteRange": {
+                          "type": "IndefiniteRange",
+                          "id": 5
+                        },
+                        "endDefiniteRange": {
+                          "type": "DefiniteRange",
+                          "id": 6
+                        }
+                      }
+                    },
+                    "CytobandInterval": {
+                      "fields": {
+                        "start": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "end": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "SequenceExpression": {
+                      "oneofs": {
+                        "sequenceExpression": {
+                          "oneof": [
+                            "literalSequenceExpression",
+                            "derivedSequenceExpression",
+                            "repeatedSequenceExpression"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "literalSequenceExpression": {
+                          "type": "LiteralSequenceExpression",
+                          "id": 1
+                        },
+                        "derivedSequenceExpression": {
+                          "type": "DerivedSequenceExpression",
+                          "id": 2
+                        },
+                        "repeatedSequenceExpression": {
+                          "type": "RepeatedSequenceExpression",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "LiteralSequenceExpression": {
+                      "fields": {
+                        "sequence": {
+                          "type": "string",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "DerivedSequenceExpression": {
+                      "fields": {
+                        "location": {
+                          "type": "SequenceLocation",
+                          "id": 1
+                        },
+                        "reverseComplement": {
+                          "type": "bool",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "RepeatedSequenceExpression": {
+                      "oneofs": {
+                        "seqExpr": {
+                          "oneof": [
+                            "literalSequenceExpression",
+                            "derivedSequenceExpression"
+                          ]
+                        },
+                        "count": {
+                          "oneof": [
+                            "number",
+                            "indefiniteRange",
+                            "definiteRange"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "literalSequenceExpression": {
+                          "type": "LiteralSequenceExpression",
+                          "id": 1
+                        },
+                        "derivedSequenceExpression": {
+                          "type": "DerivedSequenceExpression",
+                          "id": 2
+                        },
+                        "number": {
+                          "type": "Number",
+                          "id": 3
+                        },
+                        "indefiniteRange": {
+                          "type": "IndefiniteRange",
+                          "id": 4
+                        },
+                        "definiteRange": {
+                          "type": "DefiniteRange",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "Feature": {
+                      "oneofs": {
+                        "feature": {
+                          "oneof": [
+                            "gene"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "gene": {
+                          "type": "Gene",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "Gene": {
+                      "fields": {
+                        "geneId": {
+                          "type": "string",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "Number": {
+                      "fields": {
+                        "value": {
+                          "type": "uint64",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "IndefiniteRange": {
+                      "fields": {
+                        "value": {
+                          "type": "uint64",
+                          "id": 1
+                        },
+                        "comparator": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "DefiniteRange": {
+                      "fields": {
+                        "min": {
+                          "type": "uint64",
+                          "id": 1
+                        },
+                        "max": {
+                          "type": "uint64",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "SequenceState": {
+                      "fields": {
+                        "sequence": {
+                          "type": "string",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "SimpleInterval": {
+                      "fields": {
+                        "start": {
+                          "type": "uint64",
+                          "id": 1
+                        },
+                        "end": {
+                          "type": "uint64",
+                          "id": 2
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "google": {
+      "nested": {
+        "protobuf": {
+          "options": {
+            "csharp_namespace": "Google.Protobuf.WellKnownTypes",
+            "cc_enable_arenas": true,
+            "go_package": "google.golang.org/protobuf/types/known/timestamppb",
+            "java_package": "com.google.protobuf",
+            "java_outer_classname": "TimestampProto",
+            "java_multiple_files": true,
+            "objc_class_prefix": "GPB"
+          },
+          "nested": {
+            "Timestamp": {
+              "fields": {
+                "seconds": {
+                  "type": "int64",
+                  "id": 1
+                },
+                "nanos": {
+                  "type": "int32",
+                  "id": 2
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

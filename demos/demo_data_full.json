@@ -1,0 +1,150 @@
+{
+  "id": "QR-Code ID",
+  "comment": "useful remarks De do do do de da da da",
+  "subject": {
+    "id": "proband A",
+    "dateOfBirth": "1994-01-01T00:00:00Z",
+    "sex": "FEMALE"
+  },
+  "phenotypicFeatures": [
+    {
+      "type": {
+        "id": "HP:0030084"
+      }
+    },
+    {
+      "type": {
+        "id": "HP:0000555"
+      }
+    },
+    {
+      "type": {
+        "id": "HP:0000486"
+      }
+    },
+    {
+      "type": {
+        "id": "HP:0000541"
+      }
+    },
+    {
+      "type": {
+        "id": "HP:0084369"
+      }
+    },
+    {
+      "type": {
+        "id": "HP:0112358"
+      }
+    },
+    {
+      "type": {
+        "id": "HP:0000145"
+      }
+    },
+    {
+      "type": {
+        "id": "HP:1234567"
+      }
+    },
+    {
+      "type": {
+        "id": "HP:9876543"
+      }
+    },
+    {
+      "type": {
+        "id": "HP:5678912"
+      }
+    },
+    {
+      "type": {
+        "id": "HP:0031360"
+      },
+      "excluded": true
+    },
+    {
+      "type": {
+        "id": "HP:0001234"
+      },
+      "excluded": true
+    }
+  ],
+  "interpretations": [
+    {
+      "id": "interpretation.id",
+      "progressStatus": "SOLVED",
+      "diagnosis": {
+        "disease": {
+          "id": "OMIM:263750"
+        },
+        "genomicInterpretations": [
+          {
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "PATHOGENIC",
+              "variationDescriptor": {
+                "geneContext": {
+                  "valueId": "HGNC:9884",
+                  "symbol": "RB1"
+                },
+                "expressions": [
+                  {
+                    "syntax": "hgvs.c",
+                    "value": "NM_000321.2:c.958C>T"
+                  }
+                ],
+                "allelicState": {
+                  "id": "GENO:0000135"
+                },
+                "extensions": [
+                  {
+                    "name": "test-type",
+                    "value": "Exome, short read"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "LIKELY_PATHOGENIC",
+              "variationDescriptor": {
+                "geneContext": {
+                  "valueId": "HGNC:9884",
+                  "symbol": "RB1"
+                },
+                "expressions": [
+                  {
+                    "syntax": "hgvs.c",
+                    "value": "NM_000321.2:c.1234A>G"
+                  }
+                ],
+                "allelicState": {
+                  "label": "heterozygous"
+                },
+                "extensions": [
+                  {
+                    "name": "test-type",
+                    "value": "Exome, short read"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "metaData": {
+    "created": "2021-05-14T10:35:00Z",
+    "createdBy": "mgz",
+    "submittedBy": "a_clinician@mgz-muenchen.de",
+    "phenopacketSchemaVersion": "2.0",
+    "pseudonym": "_DEMO_PSEUDONYM_"
+  },
+  "credentials": {
+    "key": "lBSkSxe/+UBWOeF5OJdQgf9qZhiI85hYE6yJCuWjCNk=",
+    "keyId": "rxome",
+    "user": "a_clinician@mgz-muenchen.de"
+  }
+}
