@@ -24,7 +24,6 @@
     "phenopacket"
   ],
   "author": "Tom Kamphans",
-  "license": "MIT",
   "license" : "SEE LICENSE IN README.md",
   "bugs": {
     "url": "https://github.com/GeneTalkTK/rxome-qrcode-generator/issues"

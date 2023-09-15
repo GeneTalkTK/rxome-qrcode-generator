@@ -42,7 +42,9 @@ async function execCmd( cmd ) {
 
 describe('CmdLine generate', () => {
   test('generates a qr code from demo data', () => {
-    FS.rmSync( '__TESTSUITE_IMG.png' );
+    if ( FS.existsSync( '__TESTSUITE_IMG.png' )) {
+      FS.rmSync( '__TESTSUITE_IMG.png' );
+    }
     execCmd( 'rxcode g -t -o __TESTSUITE_IMG.png demos/demo_data_full.json' )
     // execCmd( 'rxcode g -L -o __TESTSUITE_IMG.png demos/demo_data_full.json' )
     .then( res => {

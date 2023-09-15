@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
+const FS = require( 'fs' );
 const Coder = require( './lib/rxome-generator' );
 const ApiDemo = require( './lib/rxome-api-demo' );
 const RxAPI = require( './lib/rxome-api' );
 const { program } = require('commander');
 
-const FS = require( 'fs' );
 const Path = require('path');
 const { cp } = require('fs/promises');
 //const TXT = require( './assets/scripts/modules/texte.js')
@@ -42,7 +42,7 @@ Output: prints the given or new pseudonym.`)
   .option('-s, --key <key string>', 'API access key (default: input file, credentials.key)')
   .option('-u, --user <user string>', 'API access user (default: credentials.user or metaData.submittedBy or info@rxome.net)')
   .option('-c, --created <date>', 'Date (default: input file, metaData.created)')
-  .option('-l, --lab <lab>', 'Laboratory name (default: input file, metaData.createdBy)')
+  .option('-l, --lab <lab>', 'Laboratory name (default: input file, metaData.createdBy or lab name stored in the user account)')
   .option('-e, --email <email>', 'Laboratory email (default: input file, metaData.submittedBy)')
   .option('-S, --snake', 'Read payload formatted in snake_case (default: camelCase)')
   .option('-t, --test', 'Use test API instead of production API')
@@ -119,7 +119,7 @@ program.command('preprocess')
   .option('-o, --output <output file>', 'Output JSON file (default: stdout)')
   .option('-C, --case', 'Apply case style converter from snake_case to camelCase')
   .option('-w, --whitelist', 'Apply whitelist filtering (remove unnecessary sections)')
-  .option('-s, --sanitize', 'A        pply sanitizing step (remove common mistakes)')
+  .option('-s, --sanitize', 'Apply sanitizing step (remove common mistakes)')
   .option('-c, --compress', 'Compact HPO term list')
   .action( async (inputfile, options) => {
     let data = JSON.parse(FS.readFileSync( inputfile || '/dev/stdin' ));
@@ -160,7 +160,7 @@ program.command('apikeys')
 program.command('ping')
   .summary('Ping API/check API credentials')
   .alias('P')
-  .argument('[id]', 'API access key ID (default: rxome)')
+  .argument('id', 'API access key ID')
   .argument('key', 'API access key')
   .option('-t, --test', 'Connect to test API')
   .option('-L, --localhost', 'Connect to localhost API')
