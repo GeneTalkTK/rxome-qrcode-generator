@@ -1,4 +1,7 @@
 .vscode/
 assets/
 local/
+makeitso
 *.tgz
+*.*key
+__*

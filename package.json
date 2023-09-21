@@ -1,9 +1,9 @@
 {
   "name": "rxome-generator",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Generates QR codes containing medical information for use with RxOME database.",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "test": "jest --verbose",
     "testcoder": "jest --verbose -t 'Coder'",

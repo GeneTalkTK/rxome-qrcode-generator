@@ -1,13 +1,24 @@
 #!/usr/bin/env node
 
-const FS = require( 'fs' );
-const Coder = require( './lib/rxome-generator' );
-const ApiDemo = require( './lib/rxome-api-demo' );
-const RxAPI = require( './lib/rxome-api' );
-const { program } = require('commander');
+import * as FS from 'fs';
+// const Coder = require( './lib/rxome-generator' );
+import * as Coder from './lib/rxome-generator.cjs';
+import * as ApiDemo from './lib/rxome-api-demo.cjs' ;
+import * as RxAPI from './lib/rxome-api.cjs';
 
-const Path = require('path');
-const { cp } = require('fs/promises');
+import { program } from 'commander';
+import * as Path from 'path';
+// import { cp } from 'fs/promises';
+
+// const FS = require( 'fs' );
+// const Coder = require( './lib/rxome-generator' );
+// const ApiDemo = require( './lib/rxome-api-demo' );
+// const RxAPI = require( './lib/rxome-api' );
+// const { program } = require('commander');
+
+// const Path = require('path');
+// const { cp } = require('fs/promises');
+
 //const TXT = require( './assets/scripts/modules/texte.js')
 
 const DEMO_CREDENTIALS = ApiDemo.DEMO_CREDENTIALS
