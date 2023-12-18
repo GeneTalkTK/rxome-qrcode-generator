@@ -25,16 +25,17 @@ const DEMO_CREDENTIALS = ApiDemo.DEMO_CREDENTIALS
 const DEMO_PRIVATE_KEY = ApiDemo.CRYPT_PRIVATE_KEY
 const DEMO_PUBLIC_KEY = ApiDemo.CRYPT_PUBLIC_KEY
 
+const VERSION = '1.0.0'
 
 program
   .name('rxcode')
   .description(
 `Basic usage: rxcode g <input json file>: generates QR Code with the basefilename of the inputfile.
-Before first use, please generate an API access key (rxcode -k) and deposit the public key on the RxOME server.
+Before first use, please generate an API access key (rxcode -k) and deposit the public key on the FindMe2care server.
 `)
-  .version('1.0.0')
-  .addHelpText('beforeAll', 'RxOME.net QR Code generation tool\n')
-  .addHelpText('afterAll', '\nAuthor: Tom Kamphans, GeneTalk GmbH, 2022');
+  .version( VERSION )
+  .addHelpText('beforeAll', 'FindMe2care QR Code generation tool\n')
+  .addHelpText('afterAll', '\nAuthor: Tom Kamphans, GeneTalk GmbH, 2022, (c) 2023 RxOME GmbH');
 
 
 program.command('generate')
@@ -47,7 +48,7 @@ The command line arguments precede the data from the JSON input file.
 Output: prints the given or new pseudonym.`)
   .argument('[input file]', 'Input JSON file (default: STDIN)')
   .option('-o, --output <filename>', 'Filename for the QR code (default: <inputfile>.png)')
-  .option('-p, --pseudonym', 'vPseudonym for patient, if known. Otherwise a new is generated', '')
+  .option('-p, --pseudonym <pseudonym>', 'For re-evaluations: pseudonym for patient. Otherwise a new is generated', '')
   .option('-i, --keyId <id>', 'API access ID (default: input file, credentials.keyId or metaData.createdBy)')
   .option('-k, --keyFile <filename>', 'Filename with API access key (default: use -s)')
   .option('-s, --key <key string>', 'API access key (default: input file, credentials.key)')
@@ -93,11 +94,12 @@ Output: prints the given or new pseudonym.`)
       return 1;
     }
 
-    options.debug && console.log( "Data ", qrData );
+    // options.debug && console.log( "Data ", qrData );
   
     const outputfile = options.output || `${Path.basename((inputfile || 'qrcode.json'), '.json')}.png`
-    const psLab = await Coder.writeQR( outputfile, qrData, qrApi );
-    console.log( psLab );
+    const data = await Coder.writeQR( outputfile, qrData, qrApi );
+    console.log( data.pseudonym );
+    options.debug && console.log( JSON.stringify( data.qr_content, 0, 2) );
   });
   
 
@@ -160,7 +162,7 @@ program.command('verify')
 program.command('apikeys')
   .summary('generate key pair for API access')
   .alias('k')
-  .description('Generate key pair. A pair of these keys is necessary to communicate with the rxome API. Keep the private key and deposit the public key on the RxOme server.')
+  .description('Generate key pair. A pair of these keys is necessary to communicate with the FindMe2care API. Keep the private key and deposit the public key on the FindMe2care server.')
   .argument('[file prefix]', 'Prefix for file names (default: rxome)')
   .option('-d, --directory <dir>', 'output directory', '.')
   .action( (prefix, options) => {
@@ -330,6 +332,18 @@ program.command('proto2pheno')
   });
 
 
+program.command('settings')
+  .alias('S')
+  .description('Print current settings')
+  .option('-t, --test', 'Connect to test API')
+  .action( (options) => {
+
+    console.log('This RxOME/FindMe2care QR generator V', VERSION );
+    console.log('Connecting to', options.test ? RxAPI.TESTAPI : RxAPI.API );
+    console.log('API', options.test ? RxAPI.APIENTRY : RxAPI.APIENTRY );
+
+});
+
 program.command('statistics')
 .alias('s')
 .argument('[input file]', 'Input JSON file (default: ./demos/demo_data_full.json)')
@@ -392,7 +406,7 @@ program.command('statistics')
   //   payload: cipherBin.toString()
   // }
   // console.log( "QR-Data: ", JSON.stringify( qrData ).length )
-  //const ps_lab = await Coder.writeQR( "stat.png", qrData, RxAPI.TESTAPI );
+  //const { pseudonym, qr_content } = await Coder.writeQR( "stat.png", qrData, RxAPI.TESTAPI );
   
 
   console.log("===================================================================");
@@ -410,7 +424,7 @@ program.command('statistics')
 //   // const fileName = options.input || './demos/demo_data_full.json';
 //   // //file = inputfile || '/dev/stdin'
 //   // const data = JSON.parse( FS.readFileSync( fileName ));
-//   // // const ps_lab = await Coder.writeQR( "ZZZtest.png", data, RxAPI.TESTAPI );
+//   // // const { pseudonym, qr_content } = await Coder.writeQR( "ZZZtest.png", data, RxAPI.TESTAPI );
 //   // console.log( data );
 //   // console.log( Coder.whiteListPhenoPacket( data ) );
 //   // console.log( {

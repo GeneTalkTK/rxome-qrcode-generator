@@ -67,7 +67,8 @@ The following two async library functions generate QR codes:
 
 This function creates the QR code from the given data and writes it as PNG file specified by *filename*. 
 The credentials for accessing the RxOME API (i.e., fetching a pseudonym and the encryption key) have to be
-part of the data object (see below). Returns the pseudonym used to generate the QR code.
+part of the data object (see below). Returns the pseudonym used to generate the QR code and the unencrypted 
+content of the QR code.
 
 > `Coder.makeQR( data, api = RXAPI, apiEntry = APIENTRY )`
 
@@ -76,7 +77,9 @@ Generates a QR code object as Data URL that can be placed on a web page. As abov
 ```
 {
     qr_code: (QR code),
-    pseudonym: (pseudonym used to generate the QR code)
+    pseudonym: (pseudonym used to generate the QR code),
+    qr_data: content of the QR code (with encrypted medical data; i.e., a 1:1 image of the QR code content),
+    qr_content: content of the QR code but with unencrypted medical data for documentation purposes
 }
 ```
 
