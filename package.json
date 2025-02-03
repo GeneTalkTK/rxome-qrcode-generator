@@ -1,6 +1,6 @@
 {
   "name": "rxome-generator",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Generates QR codes containing medical information for use with the FindMe2Care platform.",
   "main": "index.js",
   "type": "module",

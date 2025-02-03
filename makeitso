@@ -1,0 +1,18 @@
+#!/bin/sh
+
+case "$1" in
+  build) #->
+    docker build -t tomkamphans/rxsrv .
+    ;;
+  deploy) #->
+    npm publish 
+    ;;
+  undeploy) #-> remove version $2
+    echo "unpublish rxome-generator@${2:?'Error: no version specified'}"
+    ;;
+  test) #->
+    echo "Demo"
+    ;;
+  *) 
+    cat makeitso | grep '#->' | grep -v 'cat makeitso' 
+esac

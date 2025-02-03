@@ -25,7 +25,7 @@ const DEMO_CREDENTIALS = ApiDemo.DEMO_CREDENTIALS
 const DEMO_PRIVATE_KEY = ApiDemo.CRYPT_PRIVATE_KEY
 const DEMO_PUBLIC_KEY = ApiDemo.CRYPT_PUBLIC_KEY
 
-const VERSION = '1.0.0'
+const VERSION = '1.0.2'
 
 program
   .name('rxcode')
@@ -100,6 +100,8 @@ Output: prints the given or new pseudonym.`)
     const data = await Coder.writeQR( outputfile, qrData, qrApi );
     console.log( data.pseudonym );
     options.debug && console.log( JSON.stringify( data.qr_content, 0, 2) );
+    //const fulldata = await Coder.makeQR( qrData, qrApi );
+    //console.log( JSON.stringify( fulldata, 0, 2) );
   });
   
 
@@ -166,7 +168,7 @@ program.command('apikeys')
   .argument('[file prefix]', 'Prefix for file names (default: rxome)')
   .option('-d, --directory <dir>', 'output directory', '.')
   .action( (prefix, options) => {
-    RxAPI.generateApiKeys( prefix || 'rxome', options.directory )
+    RxAPI.writeApiKeys( prefix || 'rxome', options.directory )
   });
 
 
