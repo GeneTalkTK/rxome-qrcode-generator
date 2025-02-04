@@ -1,6 +1,12 @@
 #!/bin/sh
 
 case "$1" in
+  pull ) #-> Pull from repo
+    git pull
+    ;;
+  push ) #-> Push to repo
+    git push -u main master
+    ;;    
   build) #->
     docker build -t tomkamphans/rxsrv .
     ;;

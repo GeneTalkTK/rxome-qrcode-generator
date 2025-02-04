@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 import * as FS from 'fs';
+import sharp from 'sharp';
+
 // const Coder = require( './lib/rxome-generator' );
 import * as Coder from './lib/rxome-generator.cjs';
 import * as ApiDemo from './lib/rxome-api-demo.cjs' ;
@@ -25,7 +27,7 @@ const DEMO_CREDENTIALS = ApiDemo.DEMO_CREDENTIALS
 const DEMO_PRIVATE_KEY = ApiDemo.CRYPT_PRIVATE_KEY
 const DEMO_PUBLIC_KEY = ApiDemo.CRYPT_PUBLIC_KEY
 
-const VERSION = '1.0.2'
+const VERSION = '1.0.3'
 
 program
   .name('rxcode')
@@ -105,7 +107,53 @@ Output: prints the given or new pseudonym.`)
   });
   
 
-program.command('convert')
+program.command('upload')
+  .alias('U')
+  .summary('For debug purposes: Upload and decode QR Code PNG to server (only for test server)')
+  .description(
+`This uploads a QR Code in PNG format that was generated with either -t (test API)
+to the corresponding server, decodes the QR Code and the medical information an returns it as JSON.
+This should basically yield the original JSON data used to create the QR Code. 
+Note that this function can be used only with the test server: for data protection reasons, the medical data are stored
+on a separate server and the production server has means to decode the medical data. 
+Output: QR Code content in JSON format.`)
+  .argument('[input file]', 'PNG containing a QR code')
+  .argument('[key ID]', 'API access ID ')
+  .argument('[key]', 'API access private key')
+  //.option('-o, --output <filename>', 'Filename for the JSON data (default: <inputfile>.json)')
+  //.option('-D, --debug', 'Some output for debugging')
+  .action( async (inputfile, keyId, key, options) => {
+    let theImage;
+    try {
+      const jpgBuffer = await sharp(inputfile).jpeg().toBuffer();
+      const base64String = jpgBuffer.toString('base64');
+      theImage = `data:image/jpeg;base64,${base64String}`;
+    } catch (error) {
+      console.log('Error converting: ', error);
+    }
+    
+    const data = {
+      image: theImage
+    };
+    const credentials = {
+      keyId: keyId,
+      user: 'doesntmatter@rxome.net',
+      key: key
+    }
+    
+    const publicKey = await Coder.fetchRxomeKey( credentials, RxAPI.TESTAPI );
+    const cryptData = await Coder.encode( publicKey.key, JSON.stringify(data) );
+    const msg = { 
+      payload: cryptData,
+      keyver:  publicKey.version
+    } 
+
+    const result = await RxAPI.pushData( `${ RxAPI.TESTAPI}/${RxAPI.APIENTRY}/testupload`, credentials, msg );
+    process.stdout.write( JSON.stringify( result, 0, 2 ));
+  });
+  
+
+  program.command('convert')
   .alias('c')
   .description('convert case style of keys in JSON files from snake_case to camelCase (and vice versa)')
   .argument('[input file]', 'Input JSON file (default: STDIN)')
@@ -341,6 +389,7 @@ program.command('settings')
   .action( (options) => {
 
     console.log('This RxOME/FindMe2care QR generator V', VERSION );
+    console.log(`Running under Node ${process.version} for ${process.arch}`);
     console.log('Connecting to', options.test ? RxAPI.TESTAPI : RxAPI.API );
     console.log('API', options.test ? RxAPI.APIENTRY : RxAPI.APIENTRY );
 

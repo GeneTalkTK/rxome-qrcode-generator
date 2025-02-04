@@ -112,7 +112,8 @@ FindMe2care QR Code generation tool
 Usage: rxcode [options] [command]
 
 Basic usage: rxcode g <input json file>: generates QR Code with the basefilename of the inputfile.
-Before first use, please generate an API access key (rxcode -k) and deposit the public key on the FindMe2care server.
+Before first use, please generate an API access key (rxcode -k) and deposit the public key on the 
+FindMe2care server.
 
 
 Options:
@@ -121,15 +122,17 @@ Options:
 
 Commands:
   generate|g [options] [input file]     generate QR Code from PhenoPacket JSON
-  convert|c [options] [input file]      convert case style of keys in JSON files from snake_case to camelCase
-                                        (and vice versa)
+  upload|U [input file] [key ID] [key]  For debug purposes: Upload and decode QR Code PNG to server (only 
+                                        for test server)
+  convert|c [options] [input file]      convert case style of keys in JSON files from snake_case to 
+                                        camelCase (and vice versa)
   preprocess|p [options] [input file]   perform preprocessing steps
   verify|v [input file]                 verify input file against phenopacket schema
   apikeys|k [options] [file prefix]     generate key pair for API access
   ping|P [options] <id> <key>           Ping API/check API credentials
   encrypt|e [options] [input file]      encrypt message (just for testing)
   decrypt|d [options] [input file]      decrypt coded message or medical data
-  data-keys|K [options] [file prefix]   generate key pair for data encryption (see -e, -d; just for testing)
+  data-keys|K [options] [file prefix]   generate data encryption key pair (see -e, -d; just for testing)
   pheno2proto|E [options] [input file]  encode PhenoPacket to protobuf (just for testing)
   proto2pheno|D [options] [input file]  decode protobuf to PhenoPacket (just for testing)
   settings|S [options]                  Print current settings
@@ -157,23 +160,23 @@ Arguments:
   input file                   Input JSON file (default: STDIN)
 
 Options:
-  -o, --output <filename>      Filename for the QR code (default: <inputfile>.png)
-  -p, --pseudonym <pseudonym>  For re-evaluations: pseudonym for patient. Otherwise a new is generated
-                               (default: "")
-  -i, --keyId <id>             API access ID (default: input file, credentials.keyId or metaData.createdBy)
-  -k, --keyFile <filename>     Filename with API access key (default: use -s)
-  -s, --key <key string>       API access key (default: input file, credentials.key)
-  -u, --user <user string>     API access user (default: credentials.user or metaData.submittedBy or
-                               info@rxome.net)
-  -c, --created <date>         Date (default: input file, metaData.created)
-  -l, --lab <lab>              Laboratory name (default: input file, metaData.createdBy or lab name stored in
-                               the user account)
-  -e, --email <email>          Laboratory email (default: input file, metaData.submittedBy)
-  -S, --snake                  Read payload formatted in snake_case (default: camelCase)
-  -t, --test                   Use test API instead of production API
-  -L, --localhost              Connect to localhost API
-  -D, --debug                  Some output for debugging
-  -h, --help                   display help for command
+  -o, --output <filename>     Filename for the QR code (default: <inputfile>.png)
+  -p, --pseudonym <pseudonym> For re-evaluations: pseudonym for patient. Otherwise a new is generated
+                              (default: "")
+  -i, --keyId <id>            API access ID (default: input file, credentials.keyId or metaData.createdBy)
+  -k, --keyFile <filename>    Filename with API access key (default: use -s)
+  -s, --key <key string>      API access key (default: input file, credentials.key)
+  -u, --user <user string>    API access user (default: credentials.user or metaData.submittedBy or
+                              info@rxome.net)
+  -c, --created <date>        Date (default: input file, metaData.created)
+  -l, --lab <lab>             Laboratory name (default: input file, metaData.createdBy or lab name stored
+                              in the user account)
+  -e, --email <email>         Laboratory email (default: input file, metaData.submittedBy)
+  -S, --snake                 Read payload formatted in snake_case (default: camelCase)
+  -t, --test                  Use test API instead of production API
+  -L, --localhost             Connect to localhost API
+  -D, --debug                 Some output for debugging
+  -h, --help                  display help for command
 
 Author: Tom Kamphans, GeneTalk GmbH, 2022, (c) 2023 RxOME GmbH
 ```
@@ -201,7 +204,7 @@ rxcode g -t -o qrcode.png demos/demo_data_full.json
 
 <img src="qrcode.png" width="400">
 
-#### Debugging
+#### Testing your installation
 To check the connection to the API on RxOME server API use
 
 > `rxcode P -d ` *your_id* *your_key*
@@ -216,6 +219,11 @@ rxcode D -bp my_file.pbuf > my_new_file.json
 diff my_new_file.json my_file.json
 ```
 
+Further, you can check a QR Code that was generated on the test server (using the `-t` option in `rxcode g `) by uploading and decoding it to the test server with the `upload` command:
+
+```
+rxcode U my_qr_code.png my_key_id my_private_key
+```
 
 ## 2.  QR-code generator service
 The packages *rxome-server* generates QR codes containing medical information for use with the FindMe2Care database
@@ -324,13 +332,28 @@ Note that the Windows service is configured with a config file given by `%RXCFG%
 the default file `%APPDATA\npm\node_modules\rxome-server-win\demo.cfg` is used.
 
 ### 2.3 Using Docker
-Instead of installing node.js and starting the server manually, you can use a docker image to run the server, e.g. by
+Instead of installing node.js and starting the server manually, you can use a docker image to run the service, e.g., with
 
 ```
-docker run -d -p 1607:1607 -e RXID="rxome" -e RXKEY="...private_key..." tomkamphans/rxsrv 
+docker run -d -p 1607:1607 tomkamphans/rxsrv:current -i "your_key_id" -s "your_private_key"
 ```
 
-Where `RXID` is the lab's user name and `RXKEY` the private API key as described above.
+Also, you can specify key ID and key using environment variables, which may be useful in a docker compose or kubernetes setting: 
+
+```
+docker run -d -p 1607:1607 -e RXID=" your_key_id" -e RXKEY="your_private_key" tomkamphans/rxsrv:current
+```
+
+Where `your_key_id` is the lab's API user name and your_key is the private API key as described above.
+
+When starting the first time (or when a new key pair should be used), you can start the service with
+
+```
+docker run -d -p 1607:1607 tomkamphans/rxsrv:current -i "your_key_id" -K
+```
+
+to generate a new key pair. Before starting the service, the script outputs the new keys. You should copy the public key into your FM2C profile, the private key 
+is immediately used to run the service.
 
 Note that the first port number in `-p 1607:1607` denotes the port on *localhost* to which the docker internal port (denoted the second port number, in this case 1607 also) is mapped. So if you need to run the service on another port, say 8081, use 
 `docker run -p 8081:1607 ...`.

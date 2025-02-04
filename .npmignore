@@ -5,3 +5,5 @@ makeitso
 *.tgz
 *.*key
 __*
+*.TODO
+*.png
